@@ -1,0 +1,26 @@
+[
+  {
+    "hostname": "master1",
+    "ip": "192.168.0.104"
+  },
+  {
+    "hostname": "master2",
+    "ip": "192.168.0.105"
+  },
+  {
+    "hostname": "jindamanee",
+    "ip": "192.168.0.100"
+  },
+  {
+    "hostname": "cream",
+    "ip": "192.168.0.101"
+  },
+  {
+    "hostname": "earth",
+    "ip": "192.168.0.102"
+  },
+  {
+    "hostname": "singto",
+    "ip": "192.168.0.103"
+  }
+]

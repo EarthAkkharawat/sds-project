@@ -1,0 +1,52 @@
+name: "todo-infra"
+version: "1.0.0"
+networks:
+    todo-net:
+
+services:
+    todo-webapp:
+        container_name: "todo-webapp"
+        image: "todo-webapp:release-3.1"
+        stdin_open: true
+        build:
+            context: ./todo-webapp
+        ports:
+            - "3000:3000"
+        networks:
+            - todo-net
+    todo:
+        container_name: "todo-service"
+        image: "todo:release-3"
+        build:
+            context: ./todo
+        ports:
+            - "8080:8000"
+        environment:
+            REDIS_HOST: redis
+        networks:
+            - todo-net
+    todo-notification:
+        container_name: "notification-service"
+        image: "todo-notification:release-1.1"
+        build:
+            context: ./todo-notification
+        ports:
+            - "9000:9000"
+        environment:
+            REDIS_HOST: redis
+        networks:
+            - todo-net
+    api-gateway:
+        container_name: "api-gateway"
+        image: "api-gateway"
+        build:
+            context: ./api-gateway
+        ports:
+            - "8000:8000"
+        networks:
+            - todo-net
+    redis:
+        image: "redis"
+        container_name: redis
+        networks:
+            - todo-net

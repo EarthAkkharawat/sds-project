@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: noti
+  labels: 
+    app: noti
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: noti
+  template:
+    metadata:
+      labels:
+        app: noti
+    spec:
+      containers:
+        - name: noti
+          image: todo-notification:release-1.1
+          env:
+            - name: REDIS_HOST
+              value: "redis"
+          ports:
+            - containerPort: 9000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: noti
+spec:
+  selector:
+    app: noti
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 9000
+  # type: NodePort

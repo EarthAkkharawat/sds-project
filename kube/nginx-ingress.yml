@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: todo-ingress
+  annotations: 
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: localhost
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: todo
+                port:
+                  number: 8000
+          - pathType: Prefix
+            path: "/noti"
+            backend:
+              service:
+                name: noti
+                port:
+                  number: 8000

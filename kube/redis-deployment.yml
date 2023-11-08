@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: redis
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: redis
@@ -17,13 +17,6 @@ spec:
           image: redis:latest
           ports:
             - containerPort: 6379
-          resources:
-            limits:
-              cpu: "1"
-              memory: "2Gi"
-            requests:
-              cpu: "500m"
-              memory: "1Mi"
 
 ---
 apiVersion: v1

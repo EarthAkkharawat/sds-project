@@ -4,8 +4,8 @@ Kubernetes cluster at the edge deployed on Raspberry Pi, utilizing the lightweig
 
 ## Contents
 
--   [List of hardwares](#list-of-hardwares-🖥️)
--   [Prerequisites](#prerequisites-📝)
+-   [List of hardwares](#list-of-hardwares-)
+-   [Prerequisites](#prerequisites-)
     -   [Install k3sup](#install-k3sup)
     -   [Config static IP via DHCP](#config-static-ip-via-dhcp)
     -   [VM configuration](#vm-configuration)
@@ -13,8 +13,8 @@ Kubernetes cluster at the edge deployed on Raspberry Pi, utilizing the lightweig
         -   [hostname](#hostname)
         -   [bootup](#bootup)
     -   [SSH-key management](#ssh-key-management)
--   [Provision Cluster](#provision-cluster-🚀)
--   [Debugging or Troubleshooting](#debugging-or-troubleshooting-🔧)
+-   [Provision Cluster](#provision-cluster-)
+-   [Debugging or Troubleshooting](#debugging-or-troubleshooting-)
     -   [View logs output](#view-logs-output)
     -   [Uninstalling](#uninstalling)
 

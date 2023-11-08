@@ -45,13 +45,12 @@ else:
 # if 'NOTIFICATION_PORT' in os.environ:
 #     notification_port = os.environ['NOTIFICATION_PORT']
 # else:
-notification_port = 9000
+notification_port = 8000
 
 
 def set_notification(todo):
-    pass
-    # url = "http://{}:{}/noti".format(notification_host, notification_port)
-    url = "http://localhost/noti"
+    # pass
+    url = "http://{}:{}/noti".format(notification_host, notification_port)
     print(url)
     data = {
         "id": todo["id"],

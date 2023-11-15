@@ -12,6 +12,6 @@ RUN mkdir /app
 WORKDIR /app
 COPY --from=builder /department-store/department-store /app
 
-EXPOSE 8091
+EXPOSE 8001
 
 CMD ["/app/department-store"]

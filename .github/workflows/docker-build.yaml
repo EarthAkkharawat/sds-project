@@ -12,13 +12,13 @@ jobs:
     strategy:
       matrix:
         include:
-          - context: ../../api-composer/api.Dockerfile
+          - context: ../../jobjap/api-composer/api.Dockerfile
             image_name: api-composer
-          - context: ../../department-store/api.Dockerfile
+          - context: ../../jobjap/api-composer/api.Dockerfile
             image_name: department-store
-          - context: ../../job-position/api.Dockerfile
+          - context: ../../jobjap/api-composer/api.Dockerfile
             image_name: job-position
-          - context: ../../parking/api.Dockerfile
+          - context: ../../jobjap/api-composer/api.Dockerfile
             image_name: parking
 
     steps:

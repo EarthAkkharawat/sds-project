@@ -64,7 +64,7 @@ func getDepartmentStoreData(companyName string) ([]DepartmentStore, error) {
 }
 func getJobPositionData(companyName string) ([]JobPosition, error) {
 	host := os.Getenv("HOST_JOB_POSITION")
-	path := host + "/department-store?companyName=" + companyName
+	path := host + "/job-position?companyName=" + companyName
 	if host == "" {
 		fmt.Println("HOST_JOB_POSITION is not set")
 	}
@@ -97,7 +97,7 @@ func getParkingData(companyName string) ([]Parking, error) {
 	if host == "" {
 		fmt.Println("HOST_PARKING is not set")
 	}
-	path := host + "/department-store?companyName=" + companyName
+	path := host + "/parking?companyName=" + companyName
 	// Create an HTTP client
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", path, nil)

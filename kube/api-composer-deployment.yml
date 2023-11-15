@@ -19,11 +19,11 @@ spec:
           image: earthakkharawat/api-composer:latest
           env:
           - name: HOST_DEPARTMENT_STORE
-            value: http://department-store:8001
+            value: http://department-store:8000
           - name: HOST_JOB_POSITION
-            value: http://job-position:8002
+            value: http://job-position:8000
           - name: HOST_PARKING
-            value: http://parking:8003
+            value: http://parking:8000
           ports:
             - containerPort: 8000
           

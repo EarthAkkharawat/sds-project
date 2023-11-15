@@ -4,34 +4,35 @@ Kubernetes cluster at the edge deployed on Raspberry Pi, utilizing the lightweig
 
 ## Contents
 
--   [List of hardwares](#list-of-hardwares-)
--   [Prerequisites](#prerequisites-)
-    -   [Install k3sup](#install-k3sup)
-    -   [Config static IP via DHCP](#config-static-ip-via-dhcp)
-    -   [VM configuration](#vm-configuration)
-    -   [Raspberry Pi configuration](#raspberry-pi-configuration)
-        -   [hostname](#hostname)
-        -   [bootup](#bootup)
-    -   [SSH-key management](#ssh-key-management)
--   [Provision Cluster](#provision-cluster-)
--   [Debugging or Troubleshooting](#debugging-or-troubleshooting-)
-    -   [View logs output](#view-logs-output)
-    -   [Uninstalling](#uninstalling)
+- [List of hardwares](#list-of-hardwares-)
+- [Prerequisites](#prerequisites-)
+  - [Install k3sup](#install-k3sup)
+  - [Config static IP via DHCP](#config-static-ip-via-dhcp)
+  - [VM configuration](#vm-configuration)
+  - [Raspberry Pi configuration](#raspberry-pi-configuration)
+    - [hostname](#hostname)
+    - [bootup](#bootup)
+    - [Sudo with no password](#sudo-with-no-password)
+  - [SSH-key management](#ssh-key-management)
+- [Provision Cluster](#provision-cluster-)
+- [Debugging or Troubleshooting](#debugging-or-troubleshooting-)
+  - [View logs output](#view-logs-output)
+  - [Uninstalling](#uninstalling)
 
 ## List of hardwares 🖥️
 
--   Master Nodes
+- Master Nodes
 
-    -   2x Ubuntu 22.04 live-server installed VM
+  - 2x Ubuntu 22.04 live-server installed VM
 
--   Worker Nodes
+- Worker Nodes
 
-    -   4x Raspberry Pi 4
+  - 4x Raspberry Pi 4
 
--   Networking
+- Networking
 
-    -   TL-WR841N Router
-    -   4x LAN Cable
+  - TL-WR841N Router
+  - 4x LAN Cable
 
 ## Prerequisites 📝
 
@@ -69,7 +70,21 @@ Nothing special, just make sure you have IP address on `Bridged mode` network, s
 change hostname via GUI, as every node must have unique hostname.
 
 ```bash
-sudo rasp-config
+sudo raspi-config
+```
+
+#### Sudo with no password
+
+permit user pi to not use password when using sudo by
+
+```bash
+sudo visudo
+```
+
+then append these below lines at the end of file,
+
+```bash
+pi ALL=(ALL) NOPASSWD: ALL
 ```
 
 #### bootup
@@ -104,30 +119,30 @@ Config `node.json` likes,
 
 ```json
 [
-    {
-        "hostname": "master1",
-        "ip": "192.168.0.104"
-    },
-    {
-        "hostname": "master2",
-        "ip": "192.168.0.105"
-    },
-    {
-        "hostname": "jindamanee",
-        "ip": "192.168.0.100"
-    },
-    {
-        "hostname": "cream",
-        "ip": "192.168.0.101"
-    },
-    {
-        "hostname": "earth",
-        "ip": "192.168.0.102"
-    },
-    {
-        "hostname": "singto",
-        "ip": "192.168.0.103"
-    }
+  {
+    "hostname": "master1",
+    "ip": "192.168.0.104"
+  },
+  {
+    "hostname": "master2",
+    "ip": "192.168.0.105"
+  },
+  {
+    "hostname": "jindamanee",
+    "ip": "192.168.0.100"
+  },
+  {
+    "hostname": "cream",
+    "ip": "192.168.0.101"
+  },
+  {
+    "hostname": "earth",
+    "ip": "192.168.0.102"
+  },
+  {
+    "hostname": "singto",
+    "ip": "192.168.0.103"
+  }
 ]
 ```
 

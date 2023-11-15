@@ -97,6 +97,12 @@ Add the following to the end of the line:
 cgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory
 ```
 
+then, reboot it.
+
+```bash
+sudo reboot
+```
+
 ### SSH-key management (Optional)
 
 for coveninence, we will use ssh-copy-id to copy ssh-key to all nodes, since k3sup does not support password input or variable.
@@ -104,7 +110,7 @@ for coveninence, we will use ssh-copy-id to copy ssh-key to all nodes, since k3s
 So, your need to copy all ssh-key in every instances to local, the machine that run k3sup.
 
 ```bash
-ssh-copy-id user@ip
+ssh-copy-id <user>@<ip>
 ```
 
 if it's error, then you need to generate ssh-key first.

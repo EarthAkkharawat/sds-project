@@ -13,7 +13,7 @@ Kubernetes cluster at the edge deployed on Raspberry Pi, utilizing the lightweig
     - [hostname](#hostname)
     - [bootup](#bootup)
     - [Sudo with no password](#sudo-with-no-password)
-  - [SSH-key management](#ssh-key-management)
+- [SSH-key management (Optional)](#ssh-key-management-optional)
 - [Provision Cluster](#provision-cluster-)
 - [Debugging or Troubleshooting](#debugging-or-troubleshooting-)
   - [View logs output](#view-logs-output)
@@ -97,7 +97,7 @@ Add the following to the end of the line:
 cgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory
 ```
 
-### SSH-key management
+### SSH-key management (Optional)
 
 for coveninence, we will use ssh-copy-id to copy ssh-key to all nodes, since k3sup does not support password input or variable.
 

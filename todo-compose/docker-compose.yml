@@ -46,7 +46,7 @@ services:
         networks:
             - todo-net
     redis:
-        image: "redis"
+        image: "redis:latest"
         container_name: redis
         networks:
             - todo-net

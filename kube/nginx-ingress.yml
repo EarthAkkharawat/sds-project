@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: todo-ingress
+  name: jobjap-ingress
 spec:
   ingressClassName: nginx
   rules:
@@ -12,20 +12,6 @@ spec:
             path: "/"
             backend:
               service:
-                name: todo
-                port:
-                  number: 8000
-          - pathType: Prefix
-            path: "/noti"
-            backend:
-              service:
-                name: noti
-                port:
-                  number: 8000
-          - pathType: Prefix
-            path: "/todo-webapp"
-            backend:
-              service:
-                name: todo-webapp
+                name: api-composer
                 port:
                   number: 8000

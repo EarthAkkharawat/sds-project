@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"os"
 
 	"github.com/gin-gonic/gin"
 )
@@ -33,9 +34,11 @@ type Parking struct {
 
 func getDepartmentStoreData(companyName string) ([]DepartmentStore, error) {
 	// URL and client setup remains the same...
-	path := "http://localhost:8001" + "/department-store?companyName=" + companyName
-	println(string(path))
-
+	host := os.Getenv("HOST_DEPARTMENT_STORE")
+	path := host + "/department-store?companyName=" + companyName
+	if host == "" {
+		fmt.Println("HOST_DEPARTMENT_STORE is not set")
+	}
 	// Create an HTTP client
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", path, nil)
@@ -60,9 +63,11 @@ func getDepartmentStoreData(companyName string) ([]DepartmentStore, error) {
 	return jsonResponse, nil
 }
 func getJobPositionData(companyName string) ([]JobPosition, error) {
-	// URL and client setup remains the same...
-	path := "http://localhost:8002" + "/job-position?companyName=" + companyName
-
+	host := os.Getenv("HOST_JOB_POSITION")
+	path := host + "/department-store?companyName=" + companyName
+	if host == "" {
+		fmt.Println("HOST_JOB_POSITION is not set")
+	}
 	// Create an HTTP client
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", path, nil)
@@ -88,7 +93,11 @@ func getJobPositionData(companyName string) ([]JobPosition, error) {
 }
 
 func getParkingData(companyName string) ([]Parking, error) {
-	path := "http://localhost:8003" + "/parking?companyName=" + companyName
+	host := os.Getenv("HOST_PARKING")
+	if host == "" {
+		fmt.Println("HOST_PARKING is not set")
+	}
+	path := host + "/department-store?companyName=" + companyName
 	// Create an HTTP client
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", path, nil)

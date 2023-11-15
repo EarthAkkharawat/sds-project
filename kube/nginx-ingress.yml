@@ -22,3 +22,10 @@ spec:
                 name: noti
                 port:
                   number: 8000
+          - pathType: Prefix
+            path: "/todo-webapp"
+            backend:
+              service:
+                name: todo-webapp
+                port:
+                  number: 8000

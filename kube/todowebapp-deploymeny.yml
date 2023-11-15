@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-webapp
+  labels:
+    app: todo-webapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todo-webapp
+  template:
+    metadata:
+      labels:
+        app: todo-webapp
+    spec:
+      containers:
+        - name: todo-webapp
+          image: todo-webapp:release-3.1
+          ports:
+            - containerPort: 3000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: todo-webapp
+spec:
+  selector:
+    app: todo-webapp
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 3000
+  # type: NodePort

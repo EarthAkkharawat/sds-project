@@ -11,7 +11,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.todo_endpoint = "http://localhost:80/";
+    this.todo_endpoint = "http://todo:8000/todo";
 
     console.log("Using TODO endpoint at: " + this.todo_endpoint);
     this.state = {

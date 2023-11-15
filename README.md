@@ -191,6 +191,12 @@ sudo systemctl status k3s-agent
 
 #### Uninstalling
 
+remove k3s over whole cluster
+
+```bash
+/usr/local/bin/k3s-killall.sh
+```
+
 Uninstall server, master node
 
 ```bash

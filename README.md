@@ -220,7 +220,7 @@ Uninstall agent, worker node
 ```
 
 ## How to deploy application
-Build Docker images of each services and push them to Docker Hub using these specific names. Furthermore, we leverage GitHub Actions for the automation of build processes and the pushing of images to the Docker Hub repository.
+Build Docker images of each services and push them to Docker Hub using these specific names. This process utilizes GitHub Actions for the automation of build processes and the pushing of images to the Docker Hub repository. The source code of configuration files for a GitHub Actions workflow are in `.github -> workflows`
 - [earthakkharawat/api-composer](https://hub.docker.com/repository/docker/earthakkharawat/api-composer/general)
 - [earthakkharawat/department-store](https://hub.docker.com/repository/docker/earthakkharawat/department-store/general)
 - [earthakkharawat/job-position](https://hub.docker.com/repository/docker/earthakkharawat/job-position/general)

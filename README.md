@@ -164,24 +164,23 @@ make plan
 
 Customize your `bootstrap.sh`, since k3sup plan api does not satisfy our setup, then run it.
 
-More detail on Customizing `bootstrap.sh`, I will explain later.
-
 ```bash
 ./bootstrap.sh
 ```
+
+More detail on Customizing `bootstrap.sh`, you can use my `Makefile` as a reference. there is a top-level controller config, called `server-args` , that acheive these below.
+
+- Detecting toleration of worker node from 5 min -> 10 s
+- Taint master node to not allow application's pod to be scheduled on it, since they are ARM image.
 
 If nothing failed, then copy `kubeconfig` to local, for monitoring cluster.
 
 ```bash
 export KUBECONFIG=`pwd`/kubeconfig
-kubectl get node
+kubectl get node -o wide
 ```
 
-Taint Master Nodes for not scheduling pods on their own, since they are Ubuntu which not compatible with ARM image.
-
-```bash
-sudo kubectl taint nodes <master-hostname> master=true:NoSchedule
-```
+Finish, you can deploy application now :)
 
 ### Debugging or Troubleshooting 🔧
 
@@ -220,7 +219,9 @@ Uninstall agent, worker node
 ```
 
 ## How to deploy application
+
 Build Docker images of each services and push them to Docker Hub using these specific names. This process utilizes GitHub Actions for the automation of build processes and the pushing of images to the Docker Hub repository. The source code of configuration files for a GitHub Actions workflow are in `.github -> workflows`
+
 - [earthakkharawat/api-composer](https://hub.docker.com/repository/docker/earthakkharawat/api-composer/general)
 - [earthakkharawat/department-store](https://hub.docker.com/repository/docker/earthakkharawat/department-store/general)
 - [earthakkharawat/job-position](https://hub.docker.com/repository/docker/earthakkharawat/job-position/general)

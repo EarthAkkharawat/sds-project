@@ -4,22 +4,26 @@ Kubernetes cluster at the edge deployed on Raspberry Pi, utilizing the lightweig
 
 ## Contents
 
-- [List of hardwares](#list-of-hardwares-)
-- [Prerequisites](#prerequisites-)
-  - [Install k3sup](#install-k3sup)
-  - [Config static IP via DHCP](#config-static-ip-via-dhcp)
-  - [VM configuration](#vm-configuration)
-  - [Raspberry Pi configuration](#raspberry-pi-configuration)
-    - [hostname](#hostname)
-    - [bootup](#bootup)
-    - [Sudo with no password](#sudo-with-no-password)
-- [SSH-key management (Optional)](#ssh-key-management-optional)
-- [Provision Cluster](#provision-cluster-)
-- [Debugging or Troubleshooting](#debugging-or-troubleshooting-)
-  - [View logs output](#view-logs-output)
-  - [Uninstalling](#uninstalling)
+- [How to set up Kubernetes cluster](#how-to-set-up-kubernetes-cluster-)
+  - [List of hardwares](#list-of-hardwares-)
+  - [Prerequisites](#prerequisites-)
+    - [Install k3sup](#install-k3sup)
+    - [Config static IP via DHCP](#config-static-ip-via-dhcp)
+    - [VM configuration](#vm-configuration)
+    - [Raspberry Pi configuration](#raspberry-pi-configuration)
+      - [hostname](#hostname)
+      - [bootup](#bootup)
+      - [Sudo with no password](#sudo-with-no-password)
+  - [SSH-key management (Optional)](#ssh-key-management-optional)
+  - [Provision Cluster](#provision-cluster-)
+  - [Debugging or Troubleshooting](#debugging-or-troubleshooting-)
+    - [View logs output](#view-logs-output)
+    - [Uninstalling](#uninstalling)
+- [How to deploy application](#how-to-deploy-application)
 
-## List of hardwares 🖥️
+## How to set up Kubernetes cluster
+
+### List of hardwares 🖥️
 
 - Master Nodes
 
@@ -34,9 +38,9 @@ Kubernetes cluster at the edge deployed on Raspberry Pi, utilizing the lightweig
   - TL-WR841N Router
   - 4x LAN Cable
 
-## Prerequisites 📝
+### Prerequisites 📝
 
-### Install k3sup
+#### Install k3sup
 
 via curl
 
@@ -51,7 +55,7 @@ via brew
 brew install k3sup
 ```
 
-### Config static IP via DHCP
+#### Config static IP via DHCP
 
 In these project, I setup router as [WISP](https://en.wikipedia.org/wiki/Wireless_distribution_system) mode, for receiving internet hotspot from my phone, and distribute it to all nodes, so that they can access internet.
 
@@ -59,13 +63,13 @@ Following this [Documents](https://www.tp-link.com/us/user-guides/tl-wr841n_v14/
 
 Then, you can continue reserving static IP for each node, by matching thier MAC address to IP address.
 
-### VM configuration
+#### VM configuration
 
 Nothing special, just make sure you have IP address on `Bridged mode` network, so they can acccess to internet and communicate with each other in the same network as Raspberry Pi.
 
-### Raspberry Pi configuration
+#### Raspberry Pi configuration
 
-#### hostname
+##### hostname
 
 change hostname via GUI, as every node must have unique hostname.
 
@@ -73,7 +77,7 @@ change hostname via GUI, as every node must have unique hostname.
 sudo raspi-config
 ```
 
-#### Sudo with no password
+##### Sudo with no password
 
 permit user pi to not use password when using sudo by
 
@@ -87,7 +91,7 @@ then append these below lines at the end of file,
 pi ALL=(ALL) NOPASSWD: ALL
 ```
 
-#### bootup
+##### bootup
 
 Enable container features in the kernel, by editing `/boot/cmdline.txt`
 
@@ -103,7 +107,7 @@ then, reboot it.
 sudo reboot
 ```
 
-### SSH-key management (Optional)
+#### SSH-key management (Optional)
 
 for coveninence, we will use ssh-copy-id to copy ssh-key to all nodes, since k3sup does not support password input or variable.
 
@@ -119,7 +123,7 @@ if it's error, then you need to generate ssh-key first.
 ssh-keygen
 ```
 
-## Provision Cluster 🚀
+### Provision Cluster 🚀
 
 Config `node.json` likes,
 
@@ -179,9 +183,9 @@ Taint Master Nodes for not scheduling pods on their own, since they are Ubuntu w
 sudo kubectl taint nodes <master-hostname> master=true:NoSchedule
 ```
 
-## Debugging or Troubleshooting 🔧
+### Debugging or Troubleshooting 🔧
 
-#### View logs output
+##### View logs output
 
 for master nodes
 
@@ -195,7 +199,7 @@ for worker nodes
 sudo systemctl status k3s-agent
 ```
 
-#### Uninstalling
+##### Uninstalling
 
 remove k3s over whole cluster
 
@@ -214,3 +218,10 @@ Uninstall agent, worker node
 ```bash
 /usr/local/bin/k3s-agent-uninstall.sh
 ```
+
+## How to deploy application
+Build Docker images of each services and push them to Docker Hub using these specific names. Furthermore, we leverage GitHub Actions for the automation of build processes and the pushing of images to the Docker Hub repository.
+- [earthakkharawat/api-composer](https://hub.docker.com/repository/docker/earthakkharawat/api-composer/general)
+- [earthakkharawat/department-store](https://hub.docker.com/repository/docker/earthakkharawat/department-store/general)
+- [earthakkharawat/job-position](https://hub.docker.com/repository/docker/earthakkharawat/job-position/general)
+- [earthakkharawat/parking](https://hub.docker.com/repository/docker/earthakkharawat/parking/general)
